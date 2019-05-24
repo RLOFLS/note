@@ -1,0 +1,19 @@
+source:https://blog.csdn.net/clevercode/article/details/80499102
+
+# yum install openssl-devel
+
+
+# yum install unixODBC-devel
+#  wget http://www.erlang.org/download/otp_src_R16B01.tar.gz
+
+
+# tar -zxvf otp_src_R16B01.tar.gz
+# cd otp_src_R16B01
+# ./configure --prefix=/usr/local/erlang --enable-hipe --enable-threads --enable-smp-support --enable-kernel-poll  --without-javac
+
+
+# make 
+# make install
+
+-¡·³öÏÖ configure: error: No curses library functions found
+-¡·yum install ncurses-devel

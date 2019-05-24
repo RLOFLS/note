@@ -1,0 +1,6 @@
+my.cnf  添加 skip-grant-tbales
+重启服务
+user mysql;
+update user set authentication_string='' where user='root'
+退出 注释my.cnf 重启登录 
+alter user 'root'@'localhost'IDENTIFIED BY 'MyNewPass';

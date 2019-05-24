@@ -1,0 +1,1 @@
+Memcached与Libmemcached介绍及其简单使用：https://blog.csdn.net/u010710458/article/details/80357630

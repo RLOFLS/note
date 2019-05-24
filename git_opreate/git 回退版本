@@ -1,0 +1,56 @@
+git checkout . #本地所有修改的。没有的提交的，都返回到原来的状态
+
+git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。
+
+git reset --hard HASH #返回到某个节点，不保留修改。
+
+git reset --soft HASH #返回到某个节点。
+
+保留修改git clean -df #返回到某个节点
+
+git clean 参数
+-n 显示 将要 删除的文件和目录
+-f 删除 文件
+-df 删除文件和目录
+
+对于恢复修改的文件，就是将文件从仓库中拉到本地工作区，即 仓库区 ----> 暂存区 ----> 工作区。
+
+对于修改的文件有两种情况：
+
+只是修改了文件，没有任何 git 操作
+修改了文件，并提交到暂存区（即编辑之后，gitadd但没有 git commit -m ....）
+修改了文件，并提交到仓库区（即编辑之后，gitadd和 git commit -m ....）
+情况I：
+只是修改了文件，没有任何 git 操作，直接一个命令就可回退：
+
+$ git checkout -- aaa.txt # aaa.txt为文件名
+情况II：
+修改了文件，并提交到暂存区（即编辑之后，gitadd但没有 git commit -m ....）
+
+$ git log --oneline    # 可以省略
+$ git reset HEAD    # 回退到当前版本
+$ git checkout -- aaa.txt    # aaa.txt为文件名
+ 情况III：
+修改了文件，并提交到仓库区（即编辑之后，gitadd和 git commit -m ....）
+
+ 
+
+$ git log --oneline    # 可以省略
+$ git reset HEAD^    # 回退到上一个版本
+$ git checkout -- aaa.txt    # aaa.txt为文件名
+ 
+
+【注1】情况II 和 情况III 只有回退的版本不一样，
+
+对于 情况II，并没有 $ git commit，仓库版本也就不会更新和记录，所以回退的是当前版本
+
+
+对于情况III，一旦 $ git commit，仓库版本就会更新并记录，所以要回退的也就是上一个版本
+
+
+【注2】$ git reset 版本号    ----  将暂缓区回退到指定版本
+
+根据 $ git log --oneline 显示的版本号（下图黄色的字），可以回退到任何一个版本，也可通过 HEAD 来指定版本（下图红色的字）。
+
+以旧图举例：
+

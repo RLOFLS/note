@@ -1,0 +1,56 @@
+安装RPM包或者安装源码包
+
+ 列出某一个文件属于哪个rpm包
+
+	命令 rpm -qf 文件的绝对路径
+	[root@localhost ~]# rpm -qf /usr/lib/libjpeg.so
+	libjpeg-turbo-devel-1.2.1-1.el6.i686
+
+	安装一个rpm包
+	[root@localhost ~]# rpm -ivh /mnt/Packages/libjpeg-turbo-devel-1.2.1-1.el6.i686.rpm
+	Preparing...                ########################################### [100%]
+	   1:libjpeg-turbo-devel    ########################################### [100%]
+	“-i” : 安装的意思
+	“-v” : 可视化
+	“-h” : 显示安装进度
+	另外在安装一个rpm包时常用的附带参数有：
+	--force : 强制安装，即使覆盖属于其他包的文件也要安装
+	--nodeps : 当要安装的rpm包依赖其他包时，即使其他包没有安装，也要安装这个包
+
+	升级一个rpm包
+	命令 rpm -Uvh filename
+	“-U” : 即升级的意思
+
+	列出一个rpm包安装的文件
+	命令 rpm -ql 包名
+
+	得到一个已安装rpm包的相关信息：命令 rpm -qi 包名 （同样不需要加平台信息与后缀名）
+
+	查询一个包是否安装：命令 rpm -q rpm包名 (这里的包名，是不带有平台信息以及后缀名的)
+	
+	卸载一个rpm包: rpm -e filename
+
+  yum工具：
+	列出所有可用的rpm包 “yum list”-》 yum list |head -n 20
+
+	搜索一个rpm包 -》 命令 yum search [相关关键词] /// [root@localhost ~]# yum list |grep 'vim'
+
+	安装一个rpm包 -> 命令 yum install [-y] [rpm包名]
+	  如果不加 “-y” 选项，则会以与用户交互的方式安装，首先是列出需要安装的rpm包信息，然后会问用户是否需要安装，输入y则安装，输入n	则不安装。而阿铭嫌这样太麻烦，所以直接加上 “-y” 选项，这样就省略掉了问用户是否安装的那一步。
+
+	卸载一个rpm包:命令 yum remove [-y] [rpm包名]
+	
+	升级一个rpm包:yum update [-y] [rpm包]
+
+````	利用yum工具下载一个rpm包:
+	有时，我们需要下载一个rpm包，只是下载下来，拷贝给其他机器使用，前面也介绍过yum安装rpm包的时候，首先得	下载这个rpm包然后再去安		装，所以使用yum完全可以做到只下载而不安装。
+	a）首先要安装 yum-downloadonly
+	[root@localhost ~]# yum install -y yum-plugin-downloadonly.noarch
+	如果你的CentOS是5.x版本，则需要安装yum-downloadonly.noarch这个包。
+	b）下载一个rpm包而不安装
+	[root@localhost ~]# yum install 包名 -y --downloadonly
+	这样虽然下载了，但是并没有保存到我们想要的目录下，那么如何指定目录呢？
+	c）下载到指定目录
+	[root@localhost ~]# yum install 包名 -y --downloadonly --downloaddir=/usr/local/src
+
+	安装源码包

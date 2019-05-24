@@ -1,0 +1,78 @@
+https://github.com/longxinH/xhprof
+//解决方案
+yum install graphviz
+
+
+<?php
+xhprof_enable(XHPROF_FLAGS_CPU + XHPROF_FLAGS_MEMORY);
+
+for ($i = 0; $i <= 1000; $i++) {
+    $a = $i * $i;
+}
+
+$xhprof_data = xhprof_disable();
+
+$XHPROF_ROOT = "/usr/local/nginx/html/xhprof";
+include_once $XHPROF_ROOT . "/xhprof_lib/utils/xhprof_lib.php";
+include_once $XHPROF_ROOT . "/xhprof_lib/utils/xhprof_runs.php";
+
+$xhprof_runs = new XHProfRuns_Default();
+$run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_testing");
+
+echo "http://localhost/xhprof/xhprof_html/index.php?run={$run_id}&source=xhprof_testing\n";
+
+Function Name：方法名称。
+
+
+    Calls：方法被调用的次数。
+
+
+    Calls%：方法调用次数在同级方法总数调用次数中所占的百分比。
+
+
+    Incl.Wall Time(microsec)：方法执行花费的时间，包括子方法的执行时间。（单位：微秒）
+
+
+    IWall%：方法执行花费的时间百分比。
+
+
+    Excl. Wall Time(microsec)：方法本身执行花费的时间，不包括子方法的执行时间。（单位：微秒）
+
+
+    EWall%：方法本身执行花费的时间百分比。
+
+
+    Incl. CPU(microsecs)：方法执行花费的CPU时间，包括子方法的执行时间。（单位：微秒）
+
+
+    ICpu%：方法执行花费的CPU时间百分比。
+
+
+    Excl. CPU(microsec)：方法本身执行花费的CPU时间，不包括子方法的执行时间。（单位：微秒）
+
+
+    ECPU%：方法本身执行花费的CPU时间百分比。
+
+
+    Incl.MemUse(bytes)：方法执行占用的内存，包括子方法执行占用的内存。（单位：字节）
+
+
+    IMemUse%：方法执行占用的内存百分比。
+
+
+    Excl.MemUse(bytes)：方法本身执行占用的内存，不包括子方法执行占用的内存。（单位：字节）
+
+
+    EMemUse%：方法本身执行占用的内存百分比。
+
+
+    Incl.PeakMemUse(bytes)：Incl.MemUse峰值。（单位：字节）
+
+
+    IPeakMemUse%：Incl.MemUse峰值百分比。
+
+
+    Excl.PeakMemUse(bytes)：Excl.MemUse峰值。单位：（字节）
+
+
+    EPeakMemUse%：Excl.MemUse峰值百分比。

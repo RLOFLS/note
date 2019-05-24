@@ -1,0 +1,28 @@
+update mysql.user set host="%" where user='root';
+
+use mysql
+
+create user ‘tom’@’localhost’ identified by ‘123123’;
+
+
+grant all privileges on . to ‘tom’@’localhost’ ;
+
+
+
+单独授予某种权限的写法： 
+GRANT SELECT 
+ON oilsystem.input 
+TO ‘u5’@’localhost’
+
+
+刷新权限并查看权限的写法： 
+FLUSH PRIVILEGES; 
+
+
+client not support authentication ... ->
+
+1、use mysql;
+
+2、alter user 'root'@'localhost' identified with mysql_native_password by '********';
+
+3、flush privileges;

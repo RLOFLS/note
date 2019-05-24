@@ -1,0 +1,86 @@
+
+
+1 解压 参考（http://www.php.cn/php-weizijiaocheng-359129.html
+http://blog.51cto.com/10158955/1942101）
+
+2 创建用户 用户组
+    groupadd php-fpm
+    useradd -g php-fpm -s /sbin/nologin php-fpm
+
+3 安装 
+
+    ######编译安装libmcrypt-2.5.7
+    [root@localhost ~]# tar zxvf libmcrypt-2.5.7.tar.gz
+    [root@localhost ~]# cd libmcrypt-2.5.7
+    [root@localhost libmcrypt-2.5.7]# ./configure --prefix=/usr/local/related/libmcrypt
+    [root@localhost libmcrypt-2.5.7]# make && make install
+    [root@localhost libmcrypt-2.5.7]# cd ~
+    [root@localhost ~]# rm -rf libmcrypt-2.5.7*
+
+    ######编译安装mhash-0.9.9.9
+    [root@localhost ~]# tar zxf mhash-0.9.9.9.tar.gz 
+    [root@localhost ~]# cd mhash-0.9.9.9
+    [root@localhost mhash-0.9.9.9]# ./configure --prefix=/usr/local/related/mhash
+    [root@localhost mhash-0.9.9.9]# make && make install
+    [root@localhost mhash-0.9.9.9]# cd ~
+    [root@localhost ~]# rm -rf mhash-0.9.9.9*
+
+    ######编译安装mcrypt-2.6.8
+    [root@localhost ~]# tar zxf mcrypt-2.6.8.tar.gz && cd mcrypt-2.6.8
+    [root@localhost mcrypt-2.6.8]# export LD_LIBRARY_PATH=/usr/local/related/libmcrypt/lib:/usr/local/related/mhash/lib
+    [root@localhost mcrypt-2.6.8]# export LDFLAGS="-L/usr/local/related/mhash/lib -I/usr/local/related/mhash/include/"
+    [root@localhost mcrypt-2.6.8]# export CFLAGS="-I/usr/local/related/mhash/include/"
+    [root@localhost mcrypt-2.6.8]# ./configure --prefix=/usr/local/related/mcrypt --with-libmcrypt-prefix=/usr/local/related/libmcryp
+    [root@localhost mcrypt-2.6.8]# make && make install
+    [root@localhost mcrypt-2.6.8]# cd ~
+    [root@localhost ~]# rm -rf mcrypt-2.6.8*
+
+    先安装一些必要扩展
+    yum -y install libxml2 libxml2-devel openssl openssl-devel curl-devel libjpeg-devel libpng-devel freetype-devel
+
+
+    ./configure --prefix=/usr/local/php7 --exec-prefix=/usr/local/php7 --bindir=/usr/local/php7/bin --sbindir=/usr/local/php7/sbin --includedir=/usr/local/php7/include --libdir=/usr/local/php7/lib/php --mandir=/usr/local/php7/php/man --with-config-file-path=/usr/local/php7/etc --with-openssl --with-mysqli --enable-mysqlnd --with-pdo-mysql --with-gd --with-iconv --with-zlib --enable-zip --enable-inline-optimization --disable-debug --disable-rpath --enable-shared --enable-xml --enable-bcmath --enable-shmop --enable-sysvsem --enable-mbregex --enable-mbstring --enable-ftp --enable-pcntl --enable-sockets --with-xmlrpc --enable-soap --without-pear --with-gettext --enable-session --with-curl --with-jpeg-dir --with-freetype-dir --enable-opcache --enable-fpm --enable-fastcgi --with-fpm-user=php-fpm --with-fpm-group=php-fpm --without-gdbm --disable-fileinfo
+
+    --with-mcrypt=/usr/include \
+    --with-mysql-sock=/var/run/mysql/mysql.sock \
+    --with-mhash \
+    --with-mcrypt=/usr/local/related/libmcrypt \
+
+    make && make install
+
+4 配置文件
+    [root@localhost php-7.0.0]# cp php.ini-production /usr/local/php7/etc/php.ini
+    [root@localhost php-7.0.0]# cp /root/php-7.0.0/sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
+    [root@localhost php-7.0.0]# cp /usr/local/php7/etc/php-fpm.conf.default /usr/local/php7/etc/php-fpm.conf
+    [root@localhost php-7.0.0]# cp /usr/local/php7/etc/php-fpm.d/www.conf.default /usr/local/php7/etc/php-fpm.d/www.conf
+
+    [global] -> php-fpm.conf
+    pid = /usr/local/php/var/run/php-fpm.pid
+    error_log = /usr/local/php/var/log/php-fpm.log
+    [www] ->www.conf 
+    listen = /tmp/php-fcgi.sock
+    user = php-fpm
+    group = php-fpm
+    pm = dynamic
+    pm.max_children = 50
+    pm.start_servers = 20
+    pm.min_spare_servers = 5
+    pm.max_spare_servers = 35
+    pm.max_requests = 500
+    rlimit_files = 1024
+    保存配置文件后，检验配置是否正确的方法为:
+    /usr/local/php/sbin/php-fpm -t
+    如果出现诸如 “test is successful” 字样，说明配置没有问题。
+
+    修改 /etc/init.d/php-fpm
+
+    prefix = /usr/local/php7
+    exec_prefix = /usr/local/php7 
+
+    php_fpm_BIN=/usr/local/php/sbin/php-fpm
+    php_fpm_CONF=/usr/local/php/etc/php-fpm.conf
+    php_fpm_PID=/usr/local/php/var/run/php-fpm.pid
+
+    chmod 755 /etc/init.d/php-fpm 
+    chkconfig --add php-fpm 
+    chkconfig php-fpm on  自启动

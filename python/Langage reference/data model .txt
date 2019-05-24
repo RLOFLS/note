@@ -1,0 +1,52 @@
+data model 数据模型
+
+1.1 objects,values and types
+
+  is 比较两个对象 
+  id() 返回对象存储的内存地址
+  type() 返回对象类型
+  
+  immutable -》 instance，numbers，strings,tuples mutable-》 dictionaries,lists
+
+1.2 the standard type hierachy (标准的层次结构)
+
+  None,NotImplemented,Ellipsis,.. 
+	
+  Sequences 序列
+	len() 计算长度 
+	a[i] -> i+1 items
+	a[i:j] => selects all items with index k such that i <= k < j
+	a[i:j:k] => x = i + n*k, n >= 0 and i <= x < j.
+    
+    Immutable sequences:
+	Strings:  ord(),chr(), str.encode()-》转成字节字符串（b'abc'）,bytes.decode()...
+	Tuples: () empty tuple ,元组内 item 可以是任意python对象，用逗号隔开
+	Bytes: b'abc'
+
+    mutable sequences:
+	lists: [] 可以是任何python对象
+	byte arrays: built-in bytearray() constructor 
+	
+	extension moudule array povides as additional example of a mutable squence type,as dose the collections module
+  
+  Set types 集合
+	set types 是一个无序，有限，唯一不可变的对象，不可以用下标 index ,可以用len()计算个数
+	可以做数学运算 差集，交集，并集，对称差集
+  
+        Sets 集合
+	  built-in set() 是可变集合 像 add() 增加一个元素..
+        Frozen sets 不可变集合
+	  是不可变集合，built-in frozenset() ,他可以作为 其他set 的一个元素，或者一个字典的 key
+  
+  Mappings 映射
+	他是一个有限，可以随意 index 的值的 对象集，a[k] 代表选择a中 对应 k 映射的值
+	
+	Dictionaries 字典
+  	  一个有限集的对象集，index可以是任意值 ，但index不能为 lists , dictionariesm ,mutable types,因为需要 key's hash value to 	  remain constant  {....}
+	  The extension modules dbm.ndbm and dbm.gnu provide additional examples of mapping types, as does the collections module.
+
+  Callable types 可调用类型
+ 	These are the types to which the function call operation (see section Calls) can be applied: 
+    
+	User-defined functions
+		

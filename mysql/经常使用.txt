@@ -1,0 +1,7 @@
+/usr/local/bin/mysql  客户端文件
+
+/etc/init.d/mysqld  （/usr/local/bin/mysql/support-files/mysql.server） 服务器文件
+
+/etc/my.cnf  配置文件
+
+/data/mysql 数据文件

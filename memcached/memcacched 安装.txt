@@ -1,0 +1,49 @@
+链接：https://blog.csdn.net/y41992910/article/details/79845302
+链接2：https://blog.csdn.net/weixin_42242253/article/details/81122527
+1.先安装libevent 
+http://libevent.org/ 
+先下载源码包,然后进行解压,编译和安装
+
+解压：#tar -zxvf libevent-2.0.21-stable.tar.gz
+进入目录：#cd libevent-2.0.21-stable
+指定安装路径：#./configure --prefix=/usr/local/libevent
+编译安装：#make && make install
+1
+2
+3
+4
+测试libevent是否安装成功：
+ls -al /usr/local | grep libevent
+lrwxrwxrwx 1 root root 21 11?? 12 17:38 libevent-1.2.so.1 -> libevent-1.2.so.1.0.3
+-rwxr-xr-x 1 root root 263546 11?? 12 17:38 libevent-1.2.so.1.0.3
+-rw-r--r-- 1 root root 454156 11?? 12 17:38 libevent.a
+-rwxr-xr-x 1 root root 811 11?? 12 17:38 libevent.la
+lrwxrwxrwx 1 root root 21 11?? 12 17:38 libevent.so -> libevent-1.2.so.1.0.3
+
+2.安装mecached 
+http://memcached.org/downloads 
+先下载源码包,然后进行解压,编译和安装(需要指定libevent所在)
+
+tar -zxvf memcached-1.5.4.tar.gz
+cd memcached-1.5.4
+./configure --prefix=/usr/local/memcached --with-libevent=/usr/local/libevent
+make && make install
+
+测试是否安装成功
+
+5.测试是否成功安装memcached：
+
+ls -al /usr/local/bin/mem*
+-rwxr-xr-x 1 root root 137986 11?? 12 17:39 /usr/local/bin/memcached
+-rwxr-xr-x 1 root root 140179 11?? 12 17:39 /usr/local/bin/memcached-debug
+
+启动mecached
+
+/usr/local/memcached/bin/memcached -p 11211 -m 64m -vv
+--------------------- 
+作者：y41992910 
+来源：CSDN 
+原文：https://blog.csdn.net/y41992910/article/details/79845302 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+/usr/local/memcached/bin/memcached -h //查看启动项

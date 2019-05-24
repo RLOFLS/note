@@ -1,0 +1,15 @@
+如何在gitlab上与fork的源代码保持同步(命令行)
+1.配置上游地址(只需要一次)
+git remote add upstream 你上游项目的地址
+git remote add upstream https://gitlab.com/Brioal/QixiuProject.git
+
+ 
+
+2.获取上游更新
+git fetch upstream
+
+3.合并到本地分支
+git merge upstream/master
+
+4.提交推送
+git push origin master

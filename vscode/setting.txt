@@ -1,0 +1,8 @@
+
+
+//PHP 设置
+"php.validate.executablePath": "/opt/lampp/bin/php",
+"php.executablePath": "/opt/lampp/bin/php",
+
+//设置自动识别文件编码
+"files.autoGuessEncoding": true,
