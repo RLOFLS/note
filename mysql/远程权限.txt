@@ -27,4 +27,25 @@ client not support authentication ... ->
 
 3、flush privileges;
 
-https://blog.csdn.net/hello_world_qwp/article/details/79551789
+select user,host,authentication_string from user;
+查看用户是否有密码
+
+mysql -u root -p123456
+
+    1
+
+2、切换数据库
+
+use mysql;
+
+    1
+
+3、更改权限
+
+update user set host = '%' where user = 'root';
+
+    1
+
+4、修改生效
+
+flush privileges;

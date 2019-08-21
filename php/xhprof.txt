@@ -1,5 +1,5 @@
 https://github.com/longxinH/xhprof
-//�������
+//解决方案
 yum install graphviz
 
 
@@ -21,58 +21,58 @@ $run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_testing");
 
 echo "http://localhost/xhprof/xhprof_html/index.php?run={$run_id}&source=xhprof_testing\n";
 
-Function Name���������ơ�
+Function Name：方法名称。
 
 
-    Calls�����������õĴ�����
+    Calls：方法被调用的次数。
 
 
-    Calls%���������ô�����ͬ�������������ô�������ռ�İٷֱȡ�
+    Calls%：方法调用次数在同级方法总数调用次数中所占的百分比。
 
 
-    Incl.Wall Time(microsec)������ִ�л��ѵ�ʱ�䣬�����ӷ�����ִ��ʱ�䡣����λ��΢�룩
+    Incl.Wall Time(microsec)：方法执行花费的时间，包括子方法的执行时间。（单位：微秒）
 
 
-    IWall%������ִ�л��ѵ�ʱ��ٷֱȡ�
+    IWall%：方法执行花费的时间百分比。
 
 
-    Excl. Wall Time(microsec)����������ִ�л��ѵ�ʱ�䣬�������ӷ�����ִ��ʱ�䡣����λ��΢�룩
+    Excl. Wall Time(microsec)：方法本身执行花费的时间，不包括子方法的执行时间。（单位：微秒）
 
 
-    EWall%����������ִ�л��ѵ�ʱ��ٷֱȡ�
+    EWall%：方法本身执行花费的时间百分比。
 
 
-    Incl. CPU(microsecs)������ִ�л��ѵ�CPUʱ�䣬�����ӷ�����ִ��ʱ�䡣����λ��΢�룩
+    Incl. CPU(microsecs)：方法执行花费的CPU时间，包括子方法的执行时间。（单位：微秒）
 
 
-    ICpu%������ִ�л��ѵ�CPUʱ��ٷֱȡ�
+    ICpu%：方法执行花费的CPU时间百分比。
 
 
-    Excl. CPU(microsec)����������ִ�л��ѵ�CPUʱ�䣬�������ӷ�����ִ��ʱ�䡣����λ��΢�룩
+    Excl. CPU(microsec)：方法本身执行花费的CPU时间，不包括子方法的执行时间。（单位：微秒）
 
 
-    ECPU%����������ִ�л��ѵ�CPUʱ��ٷֱȡ�
+    ECPU%：方法本身执行花费的CPU时间百分比。
 
 
-    Incl.MemUse(bytes)������ִ��ռ�õ��ڴ棬�����ӷ���ִ��ռ�õ��ڴ档����λ���ֽڣ�
+    Incl.MemUse(bytes)：方法执行占用的内存，包括子方法执行占用的内存。（单位：字节）
 
 
-    IMemUse%������ִ��ռ�õ��ڴ�ٷֱȡ�
+    IMemUse%：方法执行占用的内存百分比。
 
 
-    Excl.MemUse(bytes)����������ִ��ռ�õ��ڴ棬�������ӷ���ִ��ռ�õ��ڴ档����λ���ֽڣ�
+    Excl.MemUse(bytes)：方法本身执行占用的内存，不包括子方法执行占用的内存。（单位：字节）
 
 
-    EMemUse%����������ִ��ռ�õ��ڴ�ٷֱȡ�
+    EMemUse%：方法本身执行占用的内存百分比。
 
 
-    Incl.PeakMemUse(bytes)��Incl.MemUse��ֵ������λ���ֽڣ�
+    Incl.PeakMemUse(bytes)：Incl.MemUse峰值。（单位：字节）
 
 
-    IPeakMemUse%��Incl.MemUse��ֵ�ٷֱȡ�
+    IPeakMemUse%：Incl.MemUse峰值百分比。
 
 
-    Excl.PeakMemUse(bytes)��Excl.MemUse��ֵ����λ�����ֽڣ�
+    Excl.PeakMemUse(bytes)：Excl.MemUse峰值。单位：（字节）
 
 
-    EPeakMemUse%��Excl.MemUse��ֵ�ٷֱȡ�
+    EPeakMemUse%：Excl.MemUse峰值百分比。
