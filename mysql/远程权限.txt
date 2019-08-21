@@ -2,27 +2,29 @@ update mysql.user set host="%" where user='root';
 
 use mysql
 
-create user °Ætom°Ø@°Ølocalhost°Ø identified by °Æ123123°Ø;
+create user ‚Äòtom‚Äô@‚Äôlocalhost‚Äô identified by ‚Äò123123‚Äô;
 
 
-grant all privileges on . to °Ætom°Ø@°Ølocalhost°Ø ;
+grant all privileges on . to ‚Äòtom‚Äô@‚Äôlocalhost‚Äô ;
 
 
 
-µ•∂¿ ⁄”Ëƒ≥÷÷»®œﬁµƒ–¥∑®£∫ 
+ÂçïÁã¨Êéà‰∫àÊüêÁßçÊùÉÈôêÁöÑÂÜôÊ≥ïÔºö 
 GRANT SELECT 
 ON oilsystem.input 
-TO °Æu5°Ø@°Ølocalhost°Ø
+TO ‚Äòu5‚Äô@‚Äôlocalhost‚Äô
 
 
-À¢–¬»®œﬁ≤¢≤Èø¥»®œﬁµƒ–¥∑®£∫ 
+Âà∑Êñ∞ÊùÉÈôêÂπ∂Êü•ÁúãÊùÉÈôêÁöÑÂÜôÊ≥ïÔºö 
 FLUSH PRIVILEGES; 
 
 
 client not support authentication ... ->
 
-1°¢use mysql;
+1„ÄÅuse mysql;
 
-2°¢alter user 'root'@'localhost' identified with mysql_native_password by '********';
+2„ÄÅalter user 'root'@'localhost' identified with mysql_native_password by '********';
 
-3°¢flush privileges;
+3„ÄÅflush privileges;
+
+https://blog.csdn.net/hello_world_qwp/article/details/79551789

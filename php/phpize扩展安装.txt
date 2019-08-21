@@ -1,40 +1,40 @@
 https://www.cnblogs.com/58top/p/7754410.html
-1���л�����չģ��Ŀ¼
-��phpԴ�������ѹ���Ŀ¼���и�ext��Ŀ¼�������н�70���������php��չģ�鰲װ����
-������Ҫ��װimap��չ�����л���imapĿ¼��
+1、切换到扩展模块目录
+在php源码包被解压后的目录中有个ext子目录，这里有近70多个主流的php扩展模块安装包。
+如现在要安装imap扩展，则切换到imap目录：
 cd /software/php-5.5.3/ext/imap
 
-2����imapĿ¼��ִ��phpize�ű�
+2、在imap目录中执行phpize脚本
 /usr/local/php/bin/phpize
-ִ�гɹ��᷵�ؼ������ݣ�
+执行成功会返回几行数据：
 Configuring for:
 PHP Api Version: 20041225
 Zend Module Api No: 20060613
 Zend Extension Api No: 220060519
 
-3����ʼ����(ע��--with-php-config����) 
-����������б���,���Բο�����һƪ���½������ http://blog.csdn.net/haiqiao_2010/article/details/46005773
+3、开始编译(注意--with-php-config参数) 
+若编译过程中报错,可以参考另外一篇文章解决报错 http://blog.csdn.net/haiqiao_2010/article/details/46005773
 ./configure --with-php-config=/usr/local/php/bin/php-config --with-kerberos --with-imap-ssl
  
 
-4��make
-5��make install
+4、make
+5、make install
  
 
-ͳ��ʾ��Ϣ��ͼ����:
+统提示信息截图如下:
 
 
-��ʱ��
+这时在
 /usr/local/php/lib/php/extensions/no-debug-non-zts-20121212/
-Ŀ¼������imap.so�ļ�
+目录会生成imap.so文件
  
 
-6����php.ini���ҵ�extension_dir�ֶΣ���ֵ�޸ĳɣ�
+6、在php.ini中找到extension_dir字段，把值修改成：
 /usr/local/php/lib/php/extensions/no-debug-non-zts-20121212/
 
-7������php.ini��Dynamic Extensions��λ��������
+7、再在php.ini的Dynamic Extensions节位置下添加
 extension = "imap.so"
 
- 8������������
-PHP ��NGINX ��APACHE����ɡ�
-phpinfo() ��������ģ����չ,��˵����װ�ɹ�.
+ 8、重启服务器
+PHP 、NGINX 、APACHE，完成。
+phpinfo() 看到如下模块扩展,即说明安装成功.
