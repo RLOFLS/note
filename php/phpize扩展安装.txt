@@ -38,3 +38,14 @@ extension = "imap.so"
  8、重启服务器
 PHP 、NGINX 、APACHE，完成。
 phpinfo() 看到如下模块扩展,即说明安装成功.
+
+
+ sudo /usr/bin/phpize7.0
+
+sudo ./configure --with-php-config=/usr/bin/php-config7.0
+
+sudo make && sudo make install
+
+make test
+
+
