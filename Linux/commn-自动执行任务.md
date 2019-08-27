@@ -60,7 +60,8 @@ crontab -e
 crontab -e
 输入您想要完成的任何操作，然后键入
 
-###cron 时间段
+### cron 时间段
+
 ![shijian](./image/crontime.PNG)
 
 >>ESC +：wq 
