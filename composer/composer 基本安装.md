@@ -1,4 +1,4 @@
-composer 是一个项目依赖管理
+composer 是一个项目依赖管理 [官网](https://www.phpcomposer.com/)
 
 全局安装
 ####安装
