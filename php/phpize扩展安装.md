@@ -48,7 +48,7 @@ sudo make && sudo make install
 
 make test
 
-###配置文件
+### 配置文件
 ```
 eg: php.ini
 sudo vim /etc/php/7.0/fpm/php.ini
@@ -57,6 +57,7 @@ sudo vim /etc/php/7.0/fpm/conf.d/20-redis.ini
 添加 extension=redis.so
 ```
 
-
+### pecl 安装
+` pecl install swoole `
 
 
