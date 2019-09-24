@@ -34,26 +34,27 @@ class Student {
 }
 
 class PrintClass {
-    
-    public static function printClass($className) {
-        $obj = new  ReflectionClass($className);
 
+    public static function printC($className) {
+        $obj = new  ReflectionClass($className);
+        $instance = $obj->newInstance('tty');
         //获取类属性
         $properties = $obj->getProperties(); //返回属性对性数组
         foreach ($properties as $property ){
-            echo $property->getModifiers() . ' ' . $property->getName();
-            if ( $val = $property->getValue()) {
+            echo implode(' ',Reflection::getModifierNames($property->getModifiers()))   . ' ' . $property->getName();
+            if ($property->isPublic() && $val = $property->getValue($instance)) {
                 echo ' = ' . $val . ' ;'.PHP_EOL;
-            } 
+            } else {
+                echo  ' ;'.PHP_EOL;
+            }
         }
 
         //打印方法
         $methods = $obj->getMethods();
         foreach ($methods as $method) {
-            echo $method->getModifiers().' function ' . $method->name . '{ ... }' .PHP_EOL;
+            echo implode(' ', Reflection::getModifierNames($method->getModifiers())) .' function ' . $method->name . '{ ... }' .PHP_EOL;
         }
     }
 
 }
-
-PrintClass::printClass(get_class(new Student('tym')));
+PrintClass::printC(get_class(new Student('tym')));
