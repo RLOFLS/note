@@ -1,7 +1,9 @@
 ### 面向对象编程 OOP (object oriented programming)
 
 #### 魔术方法 
+
 [demo](./code/MagicMethod.php)
+
 ```
 __construct ([ mixed $args [, $... ]] ) : void //PHP 5 允行开发者在一个类中定义一个方法作为构造函数。具有构造函数的类会在每次创建新对象时先调用此方法，所以非常适合在使用对象之前做一些初始化工作。
 __destruct ( void ) : void //PHP 5 引入了析构函数的概念，这类似于其它面向对象的语言，如 C++。析构函数会在到某个对象的所有引用都被删除或者当对象被显式销毁时执行。
@@ -131,7 +133,7 @@ class C2 implements A, B{
         ...
     }
 
-    public function work(){  //这样就破块的契约
+    public function work(){  
         ...
     }
 }
@@ -139,3 +141,30 @@ class C2 implements A, B{
 
 #### 反射
 
+hook 插件扩展，动态代理
+
+[demo](./code/ReflectProxy.php)
+
+#### 异常
+
+[demo](./code/Exceptiondemo.php)
+Excetion
+
+#### 错误级别
+
+deprecated ,notice ,warning, fetal error 
+[demo](./code/errorDemo.php)
+- 设置显示错误
+
+```
+error_reporting = E_ALL | E_STRICT
+display_errors = on 
+
+log_errors = on
+error_log = /
+
+error_reporting(1);
+
+//屏蔽 error_reporting(0)  / @
+
+```
