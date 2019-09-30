@@ -38,30 +38,17 @@ class CliClient {
      */
     public function sendMsg() {
         while (true) {
-           //$this->getMsg();
-           //echo 1;
+            //$this->getMsg();
             if($val = trim(fgets(STDIN))) {
                  //获取消息
-                fwrite(STDOUT, "-----".$val."----\r\n");
                 if($val == "quit" ) {
                     $this->close();
                 }
-                //if($val == "get") {
-                    $this->getMsg();
-                    //continue;
-                //}
-                //fwrite(STDOUT, "client:".$val."\r\n");
                 if(socket_write($this->originSocket, $val."\r\n", strlen($val."\r\n")) === false) {
                     echo 'socket_write() 失败原因'.socket_strerror(socket_last_error($this->originSocket)) . "\n";
                 }
-                // if(socket_send($this->originSocket, $val."\r\n", strlen($val."\r\n"),0) === false) {
-                //     echo 'socket_write() 失败原因'.socket_strerror(socket_last_error($this->originSocket)) . "\n";
-                // }
-                //echo '111';
                 $val ='';
-            }
-            
-            
+            }    
         }
     } 
 
@@ -69,42 +56,36 @@ class CliClient {
      * 获取消息
      */
     function getMsg() {
-        // while ($out = socket_read($this->originSocket, 2048,PHP_NORMAL_READ)) {
-        //     if (!$out) {
-        //         break;
-        //     }
-        //     fwrite(STDOUT, $out);
-        //     echo 'reading'.PHP_EOL;
-        // }
-        while ($flag = socket_recv($this->originSocket, $buf, 1024, 0)) {
-           // var_dump($flag);
+        while (($buf = socket_read($this->originSocket,1024)) != "") {
             fwrite(STDOUT, $buf);
         }
-        //fwrite(STDOUT, $buf);
-        //echo 'reading'.PHP_EOL;
         unset($buf);
-        //echo '111122';
     }
 
     /**
      * 退出连接
      */
     public function close() {
+        if ($this->originSocket == null) {
+            die ();
+        }
         while ($flag = socket_recv($this->originSocket, $buf, 1024, 0)) {
             //var_dump($flag);
             fwrite(STDOUT, $buf);
         }
         fwrite(STDOUT, '退出连接'."\n");
-        socket_shutdown($this->originSocket);
-        @socket_close($this->originSocket);       
+        $str = "quit\n";
+        socket_write($this->originSocket,"quit\n", strlen($str));
+        socket_close($this->originSocket);    
+        $this->originSocket = null;   
         die();
     }
 
     public function __destruct()
     {
-        @socket_close($this->originSocket);
+        $this->close();
     }
 }
 
 $cliClient = new CliClient();
-$cliClient->sendMsg();
+$cliClient->sendMsg(); 
