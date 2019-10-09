@@ -1,18 +1,18 @@
-Á´½Ó£ºhttps://blog.csdn.net/y41992910/article/details/79845302
-Á´½Ó2£ºhttps://blog.csdn.net/weixin_42242253/article/details/81122527
-1.ÏÈ°²×°libevent 
+é“¾æ¥ï¼šhttps://blog.csdn.net/y41992910/article/details/79845302
+é“¾æ¥2ï¼šhttps://blog.csdn.net/weixin_42242253/article/details/81122527
+1.å…ˆå®‰è£…libevent 
 http://libevent.org/ 
-ÏÈÏÂÔØÔ´Âë°ü,È»ºó½øĞĞ½âÑ¹,±àÒëºÍ°²×°
+å…ˆä¸‹è½½æºç åŒ…,ç„¶åè¿›è¡Œè§£å‹,ç¼–è¯‘å’Œå®‰è£…
 
-½âÑ¹£º#tar -zxvf libevent-2.0.21-stable.tar.gz
-½øÈëÄ¿Â¼£º#cd libevent-2.0.21-stable
-Ö¸¶¨°²×°Â·¾¶£º#./configure --prefix=/usr/local/libevent
-±àÒë°²×°£º#make && make install
+è§£å‹ï¼š#tar -zxvf libevent-2.0.21-stable.tar.gz
+è¿›å…¥ç›®å½•ï¼š#cd libevent-2.0.21-stable
+æŒ‡å®šå®‰è£…è·¯å¾„ï¼š#./configure --prefix=/usr/local/libevent
+ç¼–è¯‘å®‰è£…ï¼š#make && make install
 1
 2
 3
 4
-²âÊÔlibeventÊÇ·ñ°²×°³É¹¦£º
+æµ‹è¯•libeventæ˜¯å¦å®‰è£…æˆåŠŸï¼š
 ls -al /usr/local | grep libevent
 lrwxrwxrwx 1 root root 21 11?? 12 17:38 libevent-1.2.so.1 -> libevent-1.2.so.1.0.3
 -rwxr-xr-x 1 root root 263546 11?? 12 17:38 libevent-1.2.so.1.0.3
@@ -20,30 +20,30 @@ lrwxrwxrwx 1 root root 21 11?? 12 17:38 libevent-1.2.so.1 -> libevent-1.2.so.1.0
 -rwxr-xr-x 1 root root 811 11?? 12 17:38 libevent.la
 lrwxrwxrwx 1 root root 21 11?? 12 17:38 libevent.so -> libevent-1.2.so.1.0.3
 
-2.°²×°mecached 
+2.å®‰è£…mecached 
 http://memcached.org/downloads 
-ÏÈÏÂÔØÔ´Âë°ü,È»ºó½øĞĞ½âÑ¹,±àÒëºÍ°²×°(ĞèÒªÖ¸¶¨libeventËùÔÚ)
+å…ˆä¸‹è½½æºç åŒ…,ç„¶åè¿›è¡Œè§£å‹,ç¼–è¯‘å’Œå®‰è£…(éœ€è¦æŒ‡å®šlibeventæ‰€åœ¨)
 
 tar -zxvf memcached-1.5.4.tar.gz
 cd memcached-1.5.4
 ./configure --prefix=/usr/local/memcached --with-libevent=/usr/local/libevent
 make && make install
 
-²âÊÔÊÇ·ñ°²×°³É¹¦
+æµ‹è¯•æ˜¯å¦å®‰è£…æˆåŠŸ
 
-5.²âÊÔÊÇ·ñ³É¹¦°²×°memcached£º
+5.æµ‹è¯•æ˜¯å¦æˆåŠŸå®‰è£…memcachedï¼š
 
 ls -al /usr/local/bin/mem*
 -rwxr-xr-x 1 root root 137986 11?? 12 17:39 /usr/local/bin/memcached
 -rwxr-xr-x 1 root root 140179 11?? 12 17:39 /usr/local/bin/memcached-debug
 
-Æô¶¯mecached
+å¯åŠ¨mecached
 
 /usr/local/memcached/bin/memcached -p 11211 -m 64m -vv
 --------------------- 
-×÷Õß£ºy41992910 
-À´Ô´£ºCSDN 
-Ô­ÎÄ£ºhttps://blog.csdn.net/y41992910/article/details/79845302 
-°æÈ¨ÉùÃ÷£º±¾ÎÄÎª²©Ö÷Ô­´´ÎÄÕÂ£¬×ªÔØÇë¸½ÉÏ²©ÎÄÁ´½Ó£¡
+ä½œè€…ï¼šy41992910 
+æ¥æºï¼šCSDN 
+åŸæ–‡ï¼šhttps://blog.csdn.net/y41992910/article/details/79845302 
+ç‰ˆæƒå£°æ˜ï¼šæœ¬æ–‡ä¸ºåšä¸»åŸåˆ›æ–‡ç« ï¼Œè½¬è½½è¯·é™„ä¸Šåšæ–‡é“¾æ¥ï¼
 
-/usr/local/memcached/bin/memcached -h //²é¿´Æô¶¯Ïî
+/usr/local/memcached/bin/memcached -h //æŸ¥çœ‹å¯åŠ¨é¡¹
