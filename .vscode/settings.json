@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.sql": "php",
+        "error.h": "c",
+        "libgen.h": "c",
+        "in.h": "c",
+        "netdb.h": "c"
+    }
+}
