@@ -59,5 +59,10 @@ sudo vim /etc/php/7.0/fpm/conf.d/20-redis.ini
 
 ### pecl 安装
 ` pecl install swoole `
+sudo apt-get update
+sudo apt-get install php-pear -y
+Running this command will install APCu.
+
+sudo pecl install apcu
 
 
