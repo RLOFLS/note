@@ -4,6 +4,9 @@
         "error.h": "c",
         "libgen.h": "c",
         "in.h": "c",
-        "netdb.h": "c"
+        "netdb.h": "c",
+        "stdio.h": "c",
+        "fcntl.h": "c",
+        "features.h": "c"
     }
 }

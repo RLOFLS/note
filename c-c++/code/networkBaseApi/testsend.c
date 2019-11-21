@@ -7,7 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <libgen.h>
-
+#define BUF_SIZE 1024
 int main(int argc, char* argv[]) {
 
     if (argc <= 2) {
@@ -29,11 +29,15 @@ int main(int argc, char* argv[]) {
     if ( connect( sockfd, (struct sockaddr*)&server_address, sizeof(server_address))< 0) {
         printf("connection faild\n");
     } else {
+        char buffer[BUF_SIZE];
         const char* oob_data = "abc";
         const char* normal_data = "123";
         send(sockfd, normal_data, strlen(normal_data), 0 );
         send(sockfd, oob_data,strlen(oob_data), MSG_OOB);
         send(sockfd, normal_data, strlen(normal_data), 0);
+        memset(buffer, '\0', BUF_SIZE);
+        int ret = recv(sockfd, buffer, BUF_SIZE - 1, 0);
+        printf("got %d btyes of normal data '%s' \n", ret, buffer);
     }
 
     close(sockfd);
