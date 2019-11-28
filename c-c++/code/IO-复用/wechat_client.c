@@ -13,7 +13,15 @@
 #include <poll.h>
 #include <fcntl.h>
 
-#define DUFFER_SIZE 64
+#define BUFFER_SIZE 64
+
+int setNonBlocking( int fd) 
+{
+    int old_option = fcntl(fd, F_GETFL);
+    int new_option = old_option | O_NONBLOCK;
+    fcntl(fd, F_SETFL, new_option);
+    return old_option;
+}
 
 int main (int argc, char* argv[])
 {
@@ -37,8 +45,45 @@ int main (int argc, char* argv[])
         close(sockfd);
         return 1;
     }
+    setNonBlocking(sockfd);
+    struct pollfd fds[2];
+    /*注册文件描述符 0 标准输入 和文件描述符sockfd上的可读事件*/
+    fds[0].fd = 0;
+    fds[0].events = POLLIN;
+    fds[0].revents = 0;
+    fds[1].fd = sockfd;
+    fds[1].events = POLLIN | POLLRDHUP;
+    fds[1].revents = 0;
 
-    pollfd fds[2];
-    /*注册文件描述符 0 标准输入*/
+    char read_buf[BUFFER_SIZE];
+    int pipefd[2];
+    int ret = pipe(pipefd);
+    assert(ret != -1);
 
+    while (1) {
+        ret = poll(fds, 2, -1);
+        if (ret < 0) {
+            printf("poll failures\n");
+            break;
+        }
+
+        if (fds[1].revents & POLLRDHUP) {
+            printf("server close the connection\n");
+            break;
+        } else if (fds[1].revents & POLLIN){
+            printf("%s\n", "有数据来了");
+            memset(read_buf, '\0', BUFFER_SIZE);
+            recv(fds[1].fd, read_buf, BUFFER_SIZE-1, 0);
+            printf("%s\n", read_buf);
+        }
+
+        if (fds[0].revents & POLLIN) {
+            /*使用splice 将用户输入数据直接西到sockfd 上（0拷贝）*/
+            ret = splice(0, NULL, pipefd[1], NULL, 32768, SPLICE_F_MORE | SPLICE_F_MOVE);
+            ret = splice(pipefd[0], NULL, sockfd, NULL, 32768, SPLICE_F_MORE | SPLICE_F_MOVE);
+        }
+    }
+
+    close(sockfd);
+    return 0;
 }
