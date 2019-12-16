@@ -13,3 +13,6 @@ git merge upstream/master
 
 4.提交推送
 git push origin master
+
+#### 切换分支
+在当前分支切去一个远程分支  并在自己本地建立分支   git checkout -b data_permission origin/data_permission
