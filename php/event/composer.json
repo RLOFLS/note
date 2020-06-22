@@ -1,0 +1,12 @@
+{
+    "name": "test/test",
+    "authors": [
+        {
+            "name": "test",
+            "email": "test@123.com"
+        }
+    ],
+    "require": {
+        "amphp/parallel-functions": "^0.1.3"
+    }
+}

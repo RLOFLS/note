@@ -1,0 +1,3 @@
+./php/event/composer.lock
+./php/event/vendor/*
+./.idea/*
