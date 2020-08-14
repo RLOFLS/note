@@ -18,13 +18,13 @@
 
 `sudo update-alternatives --config java`
 
-[切换版本](../img/java/1.png)
+![切换版本](../img/java/1.png)
 
 4. 查看版本
 
 `java -version`
 
-[查看版本](../img/java/20200814112938.png)
+![查看版本](../img/java/20200814112938.png)
 
 
 
