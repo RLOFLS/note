@@ -14,4 +14,6 @@ mv composer.phar /usr/local/bin/composer
 ###更换本地源
 ```
 composer.phar config repo.packagist composer https://packagist.phpcomposer.com
+composer config -g repo.packagist composer https://packagist.phpcomposer.com
+
 ```
