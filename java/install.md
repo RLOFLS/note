@@ -1,3 +1,7 @@
+### 下载地址
+
+[地址](https://www.oracle.com/java/technologies/javase-downloads.html)
+
 ### ubuntu
 
 1.  添加仓库源
@@ -28,3 +32,9 @@
 
 
 
+
+
+### Windows
+
+1. 下载 exe文件
+2. 设置环境变量 PATH, JAVA_BIN 
